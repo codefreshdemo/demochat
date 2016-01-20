@@ -104,6 +104,7 @@
     "grunt-bower": "~0.20.0",
     "grunt-bower-task": "~0.4.0",
     "gulp": "^3.9.0",
+    "gulp-debug": "^2.1.2",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
     "istanbul": "^0.4.2",
