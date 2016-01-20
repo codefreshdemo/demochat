@@ -23,7 +23,7 @@ gulp.task('test', ['pre-test'], function () {
     //.pipe(istanbul.enforceThresholds({ thresholds: { global: 20} }));
 });
 
-gulp.task('integration test', ['pre-test'], function () {
+gulp.task('integration', function () {
   console.log('running integration tests .....')
   console.log('done');
   return;
