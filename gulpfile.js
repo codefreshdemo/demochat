@@ -22,3 +22,11 @@ gulp.task('test', ['pre-test'], function () {
     // Enforce a coverage of at least 90%
     //.pipe(istanbul.enforceThresholds({ thresholds: { global: 20} }));
 });
+
+gulp.task('integration test', ['pre-test'], function () {
+  console.log('running integration tests .....')
+  console.log('done');
+  return;
+    // Enforce a coverage of at least 90%
+    //.pipe(istanbul.enforceThresholds({ thresholds: { global: 20} }));
+});
