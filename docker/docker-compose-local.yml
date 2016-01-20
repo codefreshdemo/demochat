@@ -1,0 +1,22 @@
+# Let's Chat: Docker Compose
+# https://docs.docker.com/compose/
+#
+# Usage: docker-compose up
+
+app:
+  image: letschat:latest
+  links:
+    - mongo
+  ports:
+    - 1111:8080
+    - 5000:5000
+  environment :
+    - DEBUG=*
+    - MONGO_DOCKER = mongodb://mongo:27017/hp_mongo
+  #command: node ./app/tests/mongo.unit.spec
+   #- MONGO_DOCKER=mongodb://admin:hpadmin@ds037415.mongolab.com:37415/hp_mongo
+  # - DEBUGGER  = "--debug-brk"
+mongo:
+  image: mongo:latest
+  ports :
+    - 27017:27017

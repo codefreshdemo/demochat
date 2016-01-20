@@ -1,0 +1,113 @@
+{
+  "name": "lets-chat",
+  "version": "0.4.5",
+  "description": "A chat app for small teams.",
+  "license": "MIT",
+  "main": "app.js",
+  "scripts": {
+    "start": "node $DEBUGGER app.js",
+    "stop": "pkill --signal SIGINT letschat",
+    "prestart": "migroose",
+    "migrate": "migroose",
+    "test": "mocha ./app/tests"
+  },
+  "engine": {
+    "node": "0.10.x",
+    "npm": "2.1.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sdelements/lets-chat.git"
+  },
+  "author": {
+    "name": "Houssam Haidar",
+    "email": "houssam@sdelements.com"
+  },
+  "contributors": [
+    {
+      "name": "Simon Bartlett",
+      "email": "simon@sdelements.com"
+    },
+    {
+      "name": "Shawn Gustaw",
+      "email": "shawn@sdelements.com"
+    },
+    {
+      "name": "Geoff Whittington",
+      "email": "geoff@sdelements.com"
+    },
+    {
+      "name": "Hanif Virani",
+      "email": "hanif@sdelements.com"
+    },
+    {
+      "name": "Jeffery Bain",
+      "email": "jeff@sdelements.com"
+    },
+    {
+      "name": "Ramanan Sivaranjan",
+      "email": "ramanan@sdelements.com"
+    },
+    {
+      "name": "Sonny Piers",
+      "email": "sonny@fastmail.net"
+    }
+  ],
+  "keywords": [
+    "chat",
+    "group chat"
+  ],
+  "bugs": {
+    "url": "https://github.com/sdelements/lets-chat/issues"
+  },
+  "homepage": "https://github.com/sdelements/lets-chat",
+  "dependencies": {
+    "async": "^1.4.2",
+    "bcryptjs": "~2.2.2",
+    "body-parser": "^1.14.0",
+    "colors": "~1.1.2",
+    "compression": "^1.5.2",
+    "connect-assets": "^5.0.1",
+    "connect-mongo": "^0.8.2",
+    "cookie-parser": "^1.4.0",
+    "debug": "^2.2.0",
+    "express.oi": "^0.0.19",
+    "helmet": "^0.11.0",
+    "i18n": "^0.5.0",
+    "js-yaml": "^3.4.2",
+    "less": "^2.5.1",
+    "lodash": "^3.10.1",
+    "md5": "^2.0.0",
+    "migroose": "^0.5.0",
+    "migroose-cli": "^0.1.0",
+    "moment": "^2.10.6",
+    "mongoose": "~4.1.8",
+    "mongoose-unique-validator": "~0.4.1",
+    "mongoose-validate": "0.0.5",
+    "multer": "^0.1.8",
+    "node-uuid": "^1.4.3",
+    "node-xmpp-server": "2.1.0",
+    "node_hash": "^0.2.0",
+    "nunjucks": "^1.3.4",
+    "on-finished": "^2.3.0",
+    "passport": "0.2.2",
+    "passport-http": "0.2.2",
+    "passport-http-bearer": "1.0.1",
+    "passport-local": "1.0.0",
+    "passport.socketio": "3.5.1",
+    "require-directory": "^2.1.1",
+    "require-tree": "^1.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "grunt": "~0.4.5",
+    "grunt-bower": "~0.20.0",
+    "grunt-bower-task": "~0.4.0",
+    "gulp": "^3.9.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.2.0",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.3.4",
+    "shortid": "^2.2.4"
+  }
+}
