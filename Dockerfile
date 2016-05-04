@@ -11,6 +11,5 @@ RUN npm install -g gulp
 WORKDIR /src
 #ENV DEBUG=*
 
-EXPOSE 8080 5222
 
 CMD ["npm", "start"]
