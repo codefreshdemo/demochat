@@ -1,93 +1,134 @@
 ![Let's Chat Greylock](http://i.imgur.com/0a3l5VF.png)
-#test1 
-#test2
+
+
+Use this tutorial to familiarize yourself with codefresh.yml file and codefresh functionality.
+
 ![Screenshot](http://i.imgur.com/C4uMD67.png)
-Test Test
-A self-hosted chat app for small teams or big Gal by [Security Compass][seccom].
-
-[![Build Status](https://travis-ci.org/sdelements/lets-chat.svg?branch=master)](https://travis-ci.org/sdelements/lets-chat)
-[![Dependency Status](https://david-dm.org/sdelements/lets-chat.svg)](https://david-dm.org/sdelements/lets-chat)
-[![devDependency Status](https://david-dm.org/sdelements/lets-chat/dev-status.svg)](https://david-dm.org/sdelements/lets-chat#info=devDependencies)
-
-## Features and Stuff
-
-* BYOS (bring your own server)
-* Persistent messages
-* Multiple rooms
-* Private and password-protected rooms
-* New message alerts / notifications
-* Mentions (hey @you/@all)
-* Image embeds / Giphy search
-* Code pasting
-* File uploads (Local / [Amazon S3][s3] / [Azure][azure])
-* Transcripts / Chat History (with search)
-* XMPP Multi-user chat (MUC)
-* 1-to-1 chat between XMPP users
-* Local / [Kerberos][kerberos] / [LDAP][ldap] authentication
-* [Hubot Adapter][hubot]
-* REST-like API
-* Basic i18n support
-* MIT Licensed
 
 
-## Deployment 
+This tutorial is based on let’s chat [app].
 
-For installation instructions, please use the following links:
+https://github.com/codefreshdemo/demochat
 
-* [Local installation][install-local]
-* [Docker][install-docker]
-* [Heroku][install-heroku]
-* [Vagrant][install-vagrant]
+###Let’s chat is self-hosted chat app for small teams or big Gal by Security Compass.
 
-## Support & Problems
+This tutorial will walk adding the following :
 
-We have a [troubleshooting document][troubleshooting], otherwise please use our
-[mailing list][mailing-list] for support issues and questions.
+* setup-step. Freestyle type step ,setup step
 
+* Build-step, Build type step - that will build docker image for your let’s chat app
 
-## Bugs and feature requests
+* Push to registry ,Push type step - that will push your image to docker hub
 
-Have a bug or a feature request? Please first read the [issue
-guidelines][contributing] and search for existing and closed issues. If your
-problem or idea is not addressed yet, [please open a new issue][new-issue].
+* after-build. Freestyle type step ,runs after the build
 
+* Composition-step. Composition type step will run composition which use your chat image from the build-step, doker image of curl 
+and print works if curl to our app at port 5000 succeed 
 
-## Documentation
+So the first thing you need to do is :
 
-Let's Chat documentation is hosted in the [wiki]. If there is an inaccuracy in
-the documentation, [please open a new issue][new-issue].
+##Fork our repo
+Enter the following link and fork let’s chat app
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.01.32 PM.png)
 
 
-## Contributing
+##Add a service
+Now enter Codefresh and add your let’s chat app
 
-Please read through our [contributing guidelines][contributing]. Included are
-directions for opening issues, coding standards, and notes on development.
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.06.10 PM.png)
 
-Editor preferences are available in the [editor config][editorconfig] for easy
-use in common text editors. Read more and download plugins at
-<http://editorconfig.org>.
+press on 'Add New Service'
+
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.09.54 PM.png)
+
+choose your repo and press next
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.10.25 PM.png)
+
+enter the path of your docker file (docker/Dockerfile)
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.10.39 PM.png)
+
+press on create
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.10.56 PM.png)
+Done !
+
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.16.52 PM.png)
 
 
-## License
 
-Released under [the MIT license][license].
+##Build your image
+Create a codefresh.yml file in this structure
+
+```
+version: '1.0'
+steps:
+
+ build-step:
+     type: build
+     dockerfile: docker/Dockerfile
+     image-name: verchol/lets-chat
+     tag: codefresh
+ ```
+Under dockerfile add your docker file location
+Image-name will be the name of your image (important for the push step)
+Tag will be the tag of the image
+
+After you finished ,add the codefresh.yml file to your repository.
+
+##Choose your codefresh.yml
+Go to your service in codefresh and choose the codefresh.yml file 
+
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.29.08 PM.png)
+
+And run the build for first time !
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 9.08.51 PM.png)
+##Push your image to docker
+First configure your account’s Docker registry details and credentials 
+under account management
+![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.30.53 PM.png)
+Now add the following step to your codefresh.yml file
+```
+push to registry:
+     type: push
+     candidate: ${{build-step}}
+     tag: ${{CF_BRANCH}}
+```
+
+You can read about 
+${{build-step}} and ${{CF_BRANCH}} are codefresh vars which you can use.
+${{build-step}} - will take the image from the build-step
+${{CF_BRANCH}} will use the branch that the builds runs on
+
+Make sure you gave the image a name that you are able to push to docker hub 
 
 
-[wiki]: https://github.com/sdelements/lets-chat/wiki
-[troubleshooting]: https://github.com/sdelements/lets-chat/blob/master/TROUBLESHOOTING.md
-[mailing-list]: https://groups.google.com/forum/#!forum/lets-chat-app
-[tracker]: https://github.com/sdelements/lets-chat/issues
-[contributing]: https://github.com/sdelements/lets-chat/blob/master/CONTRIBUTING.md
-[new-issue]: https://github.com/sdelements/lets-chat/issues/new
-[editorconfig]: https://github.com/sdelements/lets-chat/blob/master/.editorconfig
-[license]: https://github.com/sdelements/lets-chat/blob/master/LICENSE
-[ldap]: https://github.com/sdelements/lets-chat-ldap
-[kerberos]: https://github.com/sdelements/lets-chat-kerberos
-[s3]: https://github.com/sdelements/lets-chat-s3
-[seccom]: http://securitycompass.com/
-[hubot]: https://github.com/sdelements/hubot-lets-chat
-[azure]: https://github.com/maximilian-krauss/lets-chat-azure
-[install-local]: https://github.com/sdelements/lets-chat/wiki/Installation
-[install-docker]: https://registry.hub.docker.com/u/sdelements/lets-chat/
-[install-heroku]: https://github.com/sdelements/lets-chat/wiki/Heroku
-[install-vagrant]: https://github.com/sdelements/lets-chat/wiki/Vagrant
+##Unit test your image
+add the following step to your codefresh.yml file
+```
+unit-tests:
+      image: ${{build-step}}
+      fail-fast: false
+      working-directory : ${{initial-clone}}
+      commands:
+        - npm test
+        - echo $(date)
+```        
+${{initial-clone}} is also a codefresh var , it contains the path and files taken from your initial clone step .
+
+
+##Add composition step
+add the following step to your codefresh.yml file
+```
+composition-step:
+      type: composition
+      composition: demo-chat-e2e
+      composition-candidates:
+        main:
+          image: nhoag/curl
+          command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
+```
+
+
+and that's it !
+
+
+[app]: https://github.com/containers101/demochat
