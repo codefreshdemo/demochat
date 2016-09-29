@@ -69,6 +69,10 @@ pressing on ___build___  button will trigger a regular build
 
 great , you  are running  your build for the first time !
 
+
+![Screenshot](screenshots/2016-09-29_15-27-53.png)
+
+//todo : change the picture to services only
 in order to see the list of you current services press on the ___services___ button
 ![Screenshot](screenshots/2016-09-28_1645.png)
 
@@ -148,13 +152,18 @@ add the following step to your codefresh.yml file
 unit-tests:
       image: ${{build-step}}
       fail-fast: false
-      working-directory : ${{initial-clone}}
       commands:
         - npm test
         - echo $(date)
 ```        
 under ```commands```  you can put whatever commands that you like , ```npm test``` will run the 
 test for lets chat app and ```echo $(date)``` will print the date 
+
+![Screenshot](screenshots/2016-09-29_1539.png)
+ 
+as you can see the unit-test faild because there is no mongodb,
+So in order to really check the demochat you need to bring a full composition that contains the chat and mongo db
+
 
 ##Add composition 
 our lets chat app needs a mongo in order to work , so let's make it work
@@ -185,6 +194,14 @@ and choose a name for it (in this case ```demo-chat-example```)
 ![Screenshot](screenshots/2016-09-28_1918.png)
 
 when you finish press on the save icon ![Screenshot](screenshots/2016-09-28_1921.png)
+and launch your composition ![Screenshot](screenshots/2016-09-29_1552.png)
+
+
+![Screenshot](screenshots/2016-09-29_1549.png)
+
+and if you enter the link at the bottom you can see the lets chat app
+![Screenshot](screenshots/2016-09-29_1550.png)
+now add integration test to your YAML file.
 
 ##Add composition step
 add the following step to your codefresh.yml file
@@ -207,5 +224,6 @@ which will print "works" if a curl command to your app at port 5000 succeed.
 
 
 and that's it !
+
 
 [app]: https://github.com/containers101/demochat
