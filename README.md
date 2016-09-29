@@ -208,10 +208,4 @@ which will print "works" if a curl command to your app at port 5000 succeed.
 
 and that's it !
 
-Yaml variables :
-${{build-step}} - will take the image from the build-step(or any other build step name)
-${{CF_BRANCH}} will use the branch that the builds runs on
-${{initial-clone}}  contains the path and files taken from your initial clone step .
-
-
 [app]: https://github.com/containers101/demochat
