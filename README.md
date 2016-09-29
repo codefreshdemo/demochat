@@ -71,9 +71,10 @@ great , you  are running  your build for the first time !
 
 ![Screenshot](screenshots/2016-09-29_15-27-53.png)
 
-//todo : change the picture to services only
+
 in order to see the list of you current services press on the ___services___ button
-![Screenshot](screenshots/2016-09-28_1645.png)
+
+![Screenshot](screenshots/2016-09-29_1729.png)
 
 
 and see your new service
@@ -119,7 +120,7 @@ turn on the __USE YML BUILD__ option.
 ![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.29.08 PM.png)
 press on __BUILD__ , choose your branch (```master```)
 And run the YML build for the first time !
-//todo: show how you get to the previous builds and tell the user to build again
+
 
 ![Screenshot](screenshots/Screen Shot 2016-09-27 at 9.08.51 PM.png)
 
@@ -235,8 +236,9 @@ which will print "works" if a curl command to your app at port 5000 succeed.
 you can read more about composition step in our docs :
  https://docs.codefresh.io/docs/steps
 
-
-and that's it !
+run the build
+![Screenshot](screenshots/2016-09-29_1728.png)
+success !
 
 
 [app]: https://github.com/containers101/demochat
