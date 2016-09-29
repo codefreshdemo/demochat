@@ -8,7 +8,7 @@ Use this tutorial to familiarize yourself with codefresh.yml file and codefresh 
 
 This tutorial is based on let’s chat [app].
 
-https://github.com/codefreshdemo/demochat
+https://github.com/containers101/demochat
 
 ###Let’s chat is self-hosted chat app for small teams or big
 
@@ -26,8 +26,7 @@ and check if your application is responsive. It will do so by printing "works" i
 
 So the first thing you need to do is :
 
-##Fork our repo 
-//todo: put both the fork repo optioin and add by url option 
+##Fork our repo  
 
 Enter the following link and fork let’s chat app
 ![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.01.32 PM.png)
@@ -40,12 +39,12 @@ press on ___Add New Service___
 
 ![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.06.10 PM.png)
 
-now add our demochat repo.
+now add you forked demochat repo.
 toggle to ___Add by URL___
 
 ![Screenshot](screenshots/2016-09-28_1522.png)
 
-enter the repo url : ```https://github.com/codefreshdemo/demochat```
+enter the forked repo url 
 
 and choose the branch for your first build (in this case ```master```)
 
@@ -107,6 +106,9 @@ Under the ```dockerfile``` property write your dockerfile path.
 
 ```tag``` will be the tag of the image
 
+you can read more about it in our docs :
+https://docs.codefresh.io/docs/steps
+
 After you finish, add the codefresh.yml file to your repository.
 
 ##Configure your service to use codefresh.yml
@@ -136,6 +138,9 @@ push to registry:
      tag: ${{CF_BRANCH}}
 ```
 
+you can read more about it in our docs :
+https://docs.codefresh.io/docs/push-to-registry
+
 You can read about 
 ```${{build-step}}``` and ${{CF_BRANCH}} are codefresh vars which you can use.
 
@@ -143,7 +148,9 @@ You can read about
 * ```${{CF_BRANCH}}``` - Is the branch name that is currently being built. In our example it will user the ```master``` tag. 
 
 Notice: you don't have to use the ```CF_BRANCH``` environment variable. You can use whatever tag name you want.
- 
+
+you can read more about codefresh variables in our docs : 
+ https://docs.codefresh.io/docs/variables
 Make sure you gave the image a name that you are able to push to your registry (dockerhub in our example).
 
 ##Unit test your image
@@ -157,7 +164,10 @@ unit-tests:
         - echo $(date)
 ```        
 under ```commands```  you can put whatever commands that you like , ```npm test``` will run the 
-test for lets chat app and ```echo $(date)``` will print the date 
+test for lets chat app and ```echo $(date)``` will print the date
+ 
+you can read more about it in our docs :
+ https://docs.codefresh.io/docs/steps
 
 ![Screenshot](screenshots/2016-09-29_1539.png)
  
@@ -181,7 +191,8 @@ services:
   mongo:
     image: mongo
 ``` 
-
+you can read more about compositions in our docs :
+https://docs.codefresh.io/docs/create-composition
 
 go to codefresh and choose  __compositions__ tab
 and press __add new composition__ 
@@ -221,9 +232,12 @@ under ```composition``` you need to put the name of composition from the last st
 in this step codefresh will use the ```nhoag/curl``` image that can run this command : ```bash -c "sleep 20 && curl http://app:5000/" | echo 'works'```
 which will print "works" if a curl command to your app at port 5000 succeed.
 
+you can read more about composition step in our docs :
+ https://docs.codefresh.io/docs/steps
 
 
 and that's it !
 
 
 [app]: https://github.com/containers101/demochat
+
