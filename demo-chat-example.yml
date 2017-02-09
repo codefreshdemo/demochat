@@ -1,9 +1,9 @@
 version: '2'
 services:
   app:
-    image: 'superfresh/lets-chat:master'
+    image: 'codefreshdemo/lets-chat:master'
     links:
-    - mongo
+      - mongo
     ports:
       - 5000
   mongo:

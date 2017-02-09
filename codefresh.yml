@@ -4,7 +4,7 @@ steps:
   build_step:
     type: build
     dockerfile: Dockerfile
-    image-name: superfresh/lets-chat
+    image-name: codefreshdemo/lets-chat
     tag: ${{CF_BRANCH}}
 
   unit_tests:
