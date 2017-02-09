@@ -1,0 +1,23 @@
+version: '1.0'
+steps:
+
+  build_step:
+    type: build
+    dockerfile: Dockerfile
+    image-name: superfresh/lets-chat
+    tag: ${{CF_BRANCH}}
+
+  unit_tests:
+    image: ${{build_step}}
+    fail-fast: false
+    commands:
+      - npm test
+      - echo $(date)
+
+  composition_step:
+    type: composition
+    composition: demo-chat-example.yml
+    composition-candidates:
+      main:
+        image: nhoag/curl
+        command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'

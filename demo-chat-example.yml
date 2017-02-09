@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    image: 'superfresh/lets-chat:master'
+    links:
+    - mongo
+    ports:
+      - 5000
+  mongo:
+    image: mongo
