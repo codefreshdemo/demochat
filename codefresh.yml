@@ -7,13 +7,6 @@ steps:
     image-name: codefreshdemo/lets-chat
     tag: ${{CF_BRANCH}}
 
-  unit_tests:
-    image: ${{build_step}}
-    fail-fast: false
-    commands:
-      - npm test
-      - echo $(date)
-
   composition_step:
     type: composition
     composition: demo-chat-example.yml
