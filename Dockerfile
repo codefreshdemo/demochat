@@ -10,6 +10,7 @@ RUN npm install
 RUN npm install -g mocha
 RUN npm install -g istanbul
 RUN npm install -g gulp
+RUN npm install -g debug
 
 COPY . /src
 

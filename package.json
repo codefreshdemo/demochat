@@ -109,6 +109,7 @@
     "gulp-mocha": "^2.2.0",
     "istanbul": "^0.4.2",
     "mocha": "^2.3.4",
-    "shortid": "^2.2.4"
+    "shortid": "^2.2.4",
+    "debug": "^2.2.0"
   }
 }
