@@ -26,12 +26,12 @@ So the first thing you need to do is :
 Enter the following link https://github.com/codefreshdemo/demochat and fork let’s chat app
 ![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.01.32 PM.png)
 
-* [Getting started wtih Docker](#docker)
-* [Getting started With DockerCompose](#docker-compose)
-* [Getting started With Codefresh YAML](#codefresh-yml)
+* [Getting started with Docker](#docker)
+* [Getting started with DockerCompose](#docker-compose)
+* [Getting started with Codefresh YAML](#codefresh-yml)
 
 <a name="docker"/>
-#Getting started wtih Docker
+#Getting started with Docker
 
 ##Add a service
 Now enter Codefresh and add your let’s chat app as a codefresh service.
@@ -87,100 +87,25 @@ and see your new service
 <a name="docker-compose"/>
 #Getting started with DockerCompose
 
+Go to the tab "Compositions" and press on the button __ADD COMPOSITION__
+
+![Screenshot](screenshots/codefresh_add_first_compose.png)
+
+In the **Composition Name** text box, type a name for your composition and click __NEXT__
+
+![Screenshot](screenshots/codefresh_name_compose.png)
+
+Select Composition Starting Point. On this screen you can choose: __What type of composition would you like to create?__
+Select the **File in repo** and click **NEXT**.
+
+![Screenshot](screenshots/codefresh_compose_fileinrepo.png)
+
+Enter the path https://github.com/codefreshdemo/demochat, choose the branch "master" and click **NEXT**.
+
+![Screenshot](screenshots/codefresh_select_repos.png)
+
 <a name="codefresh-yml"/>
 #Getting started With Codefresh YAML
-
-##Build your image
-Create a codefresh.yml file using YAML syntax .
-
-The file should be in the following structure
-```
-version: '1.0'
-steps:
-
-    build-step:
-        type: build
-        dockerfile: Dockerfile
-        image-name: superfresh/lets-chat
-        tag: codefresh
-
- ```
-
-```build-step``` can be any name that you want
-
-Under the ```dockerfile``` property write your dockerfile path.
-
-```image-name``` will be the name of your image. The image name is very important for the push step so make sure it suit the repository's conventions (for example: dockerhub require the image name to be in the format of <user name>/<image name> so in our case it would be ```superfresh/lets-chat```)
-
-```tag``` will be the tag of the image
-
-you can read more about it in our docs :
-https://docs.codefresh.io/docs/steps
-
-After you finish, add the codefresh.yml file to your repository.
-
-##Configure your service to use codefresh.yml
-Go back to codefresh services, and choose your service.
-
-turn on the __USE YML BUILD__ option.
-
-![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.29.08 PM.png)
-press on __BUILD__ , choose your branch (```master```)
-And run the YML build for the first time !
-
-
-![Screenshot](screenshots/Screen Shot 2016-09-27 at 9.08.51 PM.png)
-
-after the build is finished you can find it under the  __BUILDS__ tab by toggling to  __YML Builds__
-![Screenshot](screenshots/2016-09-28_1852.png)
-
-##Push your image to docker registry
-First configure your account’s Docker registry details and credentials
-under __account management__
-![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.30.53 PM.png)
-Now add the following step to your codefresh.yml file
-```
-push to registry:
-     type: push
-     candidate: ${{build-step}}
-     tag: ${{CF_BRANCH}}
-```
-
-you can read more about it in our docs :
-https://docs.codefresh.io/docs/push-to-registry
-
-You can read about
-```${{build-step}}``` and ${{CF_BRANCH}} are codefresh vars which you can use.
-
-* ```${{build-step}}``` - will take the image from the build-step
-* ```${{CF_BRANCH}}``` - Is the branch name that is currently being built. In our example it will user the ```master``` tag.
-
-Notice: you don't have to use the ```CF_BRANCH``` environment variable. You can use whatever tag name you want.
-
-you can read more about codefresh variables in our docs :
- https://docs.codefresh.io/docs/variables
-Make sure you gave the image a name that you are able to push to your registry (dockerhub in our example).
-
-##Unit test your image
-add the following step to your codefresh.yml file
-```
-unit-tests:
-      image: ${{build-step}}
-      fail-fast: false
-      commands:
-        - npm test
-        - echo $(date)
-```
-under ```commands```  you can put whatever commands that you like , ```npm test``` will run the
-test for lets chat app and ```echo $(date)``` will print the date
-
-you can read more about it in our docs :
- https://docs.codefresh.io/docs/steps
-
-![Screenshot](screenshots/2016-09-29_1539.png)
-
-as you can see the unit-test faild because there is no mongodb,
-So in order to really check the demochat you need to bring a full composition that contains the chat and mongo db
 
 
 ##Add composition
