@@ -32,12 +32,12 @@ Now enter Codefresh and add your let’s chat app as a codefresh service.
 
 press on ___Add New Service___
 
-![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.06.10 PM.png)
+![Screenshot](screenshots/codefresh_add_first_service.png)
 
 now add you forked demochat repo.
 toggle to ___Add by URL___
 
-![Screenshot](screenshots/2016-09-28_1522.png)
+![Screenshot](screenshots/codefresh_add_by_url.png)
 
 enter the forked repo url
 
@@ -46,36 +46,37 @@ and choose the branch for your first build (in this case ```master```)
 
 when you finish press ___next___.
 
-![Screenshot](screenshots/2016-09-28_1536.png)
+![Screenshot](screenshots/codefresh_select_service_repo_by_url.png)
+
+select the build method Dockerfile
+
+![Screenshot](screenshots/codefresh_build_method.png)
 
 enter the path of your docker file (in our case it's simply ```Dockerfile```)
 and press ___next___
 
-
-![Screenshot](screenshots/2016-09-28_1639.png)
+![Screenshot](screenshots/codefresh_dockerfile_build_method.png)
 
 make sure you can see the preview of your dockerfile
 and press ___create___
-![Screenshot](screenshots/2016-09-28_1641.png)
+
+![Screenshot](screenshots/codefresh_preview_dockerfile.png)
 
 pressing on ___build___  button will trigger a regular build
-![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.10.56 PM.png)
+
+![Screenshot](screenshots/codefresh_build_dockerfile.png)
 
 great , you  are running  your build for the first time !
 
-
-![Screenshot](screenshots/2016-09-29_15-27-53.png)
-
+![Screenshot](screenshots/codefresh_demochat_regular_build.png)
 
 in order to see the list of you current services press on the ___services___ button
 
 ![Screenshot](screenshots/2016-09-29_1729.png)
 
-
 and see your new service
 
-![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.16.52 PM.png)
-
+![Screenshot](screenshots/codefresh_demochat_service.png)
 
 
 ##Build your image
