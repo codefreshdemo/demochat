@@ -27,8 +27,8 @@ Enter the following link https://github.com/codefreshdemo/demochat and fork letâ
 ![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.01.32 PM.png)
 
 * [Getting started with Docker](#docker)
-* [Getting started with DockerCompose](#docker-compose)
-* [Getting started with Codefresh YAML](#codefresh-yml)
+* [Getting started with DockerCompose](#docker_compose)
+* [Getting started with Codefresh YAML](#codefresh_yml)
 
 <a name="docker"/>
 #Getting started with Docker
@@ -84,7 +84,7 @@ and see your new service
 
 ![Screenshot](screenshots/codefresh_demochat_service.png)
 
-<a name="docker-compose"/>
+<a name="docker_compose"/>
 #Getting started with DockerCompose
 
 Go to the tab "Compositions" and press on the button __ADD COMPOSITION__
@@ -104,7 +104,7 @@ Enter the path https://github.com/codefreshdemo/demochat, choose the branch "mas
 
 ![Screenshot](screenshots/codefresh_select_repos.png)
 
-<a name="codefresh-yml"/>
+<a name="codefresh_yml"/>
 #Getting started With Codefresh YAML
 
 
