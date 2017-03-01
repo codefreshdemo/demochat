@@ -104,8 +104,20 @@ Enter the path https://github.com/codefreshdemo/demochat, choose the branch "mas
 
 ![Screenshot](screenshots/codefresh_select_repos.png)
 
+Enter the path of your docker-compose.yml file (in our case it's simply ```docker-compose-build.yml```) and press ___NEXT___
+
+![Screenshot](screenshots/codefresh_locate_compose_file.png)
+
+Then click on the **CREATE**.
+
+![Screenshot](screenshots/codefresh_customize_compose.png)
+
+Click on the button __BUILD IMAGES__
+
+![Screenshot](screenshots/codefresh_configure_compose.png)
+
 <a name="codefresh_yml"/>
-#Getting started With Codefresh YAML
+#Getting started with Codefresh YAML
 
 
 ##Add composition
