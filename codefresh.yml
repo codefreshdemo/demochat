@@ -11,7 +11,7 @@ steps:
     image: ${{build_step}}
     fail-fast: false
     commands:
-      - npm install gulp
+      - npm install
       - gulp test
 
   integration_step:
