@@ -119,70 +119,57 @@ Click on the button __BUILD IMAGES__
 <a name="codefresh_yml"/>
 #Getting started with Codefresh YAML
 
+##Add a service
+Now enter Codefresh and add your let’s chat app as a codefresh service.
 
-##Add composition
-our lets chat app needs a mongo in order to work , so let's make it work
+press on ___Add New Service___
 
-the following composition will use your image at port 500 linked to a mongo image
-```
-version: '2'
-services:
-  app:
-    image: 'superfresh/lets-chat:master'
-    links:
-    - mongo
-    ports:
-      - 5000
-  mongo:
-    image: mongo
-```
-you can read more about compositions in our docs :
-https://docs.codefresh.io/docs/create-composition
+![Screenshot](screenshots/codefresh_add_first_service.png)
 
-go to codefresh and choose  __compositions__ tab
-and press __add new composition__
+now add you forked demochat repo.
+toggle to ___Add by URL___
 
-![Screenshot](screenshots/2016-09-28_1915.png)
+![Screenshot](screenshots/codefresh_add_by_url.png)
+
+enter the forked repo url
+
+and choose the branch for your first build (in this case ```master```)
 
 
-toggele to __advance__ mode , add the composition
-and choose a name for it (in this case ```demo-chat-example```)
-![Screenshot](screenshots/2016-09-28_1918.png)
+when you finish press ___next___.
 
-when you finish press on the save icon ![Screenshot](screenshots/2016-09-28_1921.png)
-and launch your composition ![Screenshot](screenshots/2016-09-29_1552.png)
+![Screenshot](screenshots/codefresh_select_service_repo_by_url.png)
 
+select the build method Codefresh.YML
 
-![Screenshot](screenshots/2016-09-29_1549.png)
+![Screenshot](screenshots/codefresh_build_method.png)
 
-and if you enter the link at the bottom you can see the lets chat app
-![Screenshot](screenshots/2016-09-29_1550.png)
-now add integration test to your YAML file.
+enter the path of your codefresh.yml (in our case it's simply ```./codefresh.yml```)
+and press ___NEXT___
 
-##Add composition step
-add the following step to your codefresh.yml file
+![Screenshot](screenshots/codefresh_build_method_yml.png)
 
+make sure you can see the preview of your dockerfile
+and press ___CREATE___
 
-```
-composition-step:
-      type: composition
-      composition: demo-chat-example
-      composition-candidates:
-        main:
-          image: nhoag/curl
-          command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
-```
-under ```composition``` you need to put the name of composition from the last step in order to use it
-(in this case ```demo-chat-example```)
-in this step codefresh will use the ```nhoag/curl``` image that can run this command : ```bash -c "sleep 20 && curl http://app:5000/" | echo 'works'```
-which will print "works" if a curl command to your app at port 5000 succeed.
+![Screenshot](screenshots/codefresh_review_yml.png)
 
-you can read more about composition step in our docs :
- https://docs.codefresh.io/docs/steps
+pressing on ___BUILD___  button will trigger a regular build
 
-run the build
-![Screenshot](screenshots/2016-09-29_1728.png)
-success !
+![Screenshot](screenshots/codefresh_build_codefresh_yml.png)
+
+great , you  are running  your build for the first time !
+
+![Screenshot](screenshots/codefresh_demochat_regular_build.png)
+
+in order to see the list of you current services press on the ___services___ button
+
+![Screenshot](screenshots/2016-09-29_1729.png)
+
+and see your new service
+
+![Screenshot](screenshots/codefresh_demochat_service.png)
+
 
 
 
