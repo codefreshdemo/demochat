@@ -7,9 +7,24 @@ steps:
     image-name: codefreshdemo/lets-chat
     tag: ${{CF_BRANCH}}
 
-  composition_step:
+  unit_tests:
+    image: ${{build_step}}
+    fail-fast: false
+    commands:
+      - gulp test
+
+  integration_step:
     type: composition
-    composition: demo-chat-example.yml
+    composition:
+      services:
+        app:
+          image: ${{build_step}}
+          links:
+            - mongo
+          ports:
+            - 5000
+        mongo:
+          image: mongo
     composition-candidates:
       main:
         image: nhoag/curl
