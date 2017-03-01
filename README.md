@@ -26,6 +26,12 @@ So the first thing you need to do is :
 Enter the following link https://github.com/codefreshdemo/demochat and fork let’s chat app
 ![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.01.32 PM.png)
 
+* [Getting started wtih Docker](#docker)
+* [Getting started With DockerCompose](#docker-compose)
+* [Getting started With Codefresh YAML](#codefresh-yml)
+
+<a name="docker"/>
+#Getting started wtih Docker
 
 ##Add a service
 Now enter Codefresh and add your let’s chat app as a codefresh service.
@@ -78,6 +84,11 @@ and see your new service
 
 ![Screenshot](screenshots/codefresh_demochat_service.png)
 
+<a name="docker-compose"/>
+#Getting started with DockerCompose
+
+<a name="codefresh-yml"/>
+#Getting started With Codefresh YAML
 
 ##Build your image
 Create a codefresh.yml file using YAML syntax .
@@ -237,5 +248,4 @@ run the build
 success !
 
 
-[app]: https://github.com/containers101/demochat
 
