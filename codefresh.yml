@@ -11,11 +11,13 @@ steps:
     image: ${{build_step}}
     fail-fast: false
     commands:
+      - npm install gulp
       - gulp test
 
   integration_step:
     type: composition
     composition:
+      version: '2'
       services:
         app:
           image: ${{build_step}}
