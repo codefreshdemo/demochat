@@ -4,43 +4,42 @@ steps:
   build_step:
     type: build
     dockerfile: Dockerfile
-    image-name: codefreshdemo/demochat
+    image-name: demochat
     tag: ${{CF_BRANCH}}
 
-  unit_tests:
-    image: ${{build_step}}
-    fail-fast: false
+#  unit_tests:
+#    image: ${{build_step}}
+#    fail-fast: false
+#    commands:
+#      - npm install
+#      - gulp test
+#
+#  integration_step:
+#    type: composition
+#    composition:
+#      version: '2'
+#      services:
+#        app:
+#          image: ${{build_step}}
+#          links:
+#            - mongo
+#          ports:
+#            - 5000
+#        mongo:
+#          image: mongo
+#    composition-candidates:
+#      main:
+#        image: nhoag/curl
+#        command: bash -c "sleep 30 && curl http://app:5000/" | echo 'works'
+
+  deploy_to_ecs:
+    image: codefresh/cf-deploy-ecs
     commands:
-      - npm install
-      - gulp test
-
-  integration_step:
-    type: composition
-    composition:
-      version: '2'
-      services:
-        app:
-          image: ${{build_step}}
-          links:
-            - mongo
-          ports:
-            - 5000
-        mongo:
-          image: mongo
-    composition-candidates:
-      main:
-        image: nhoag/curl
-        command: bash -c "sleep 30 && curl http://app:5000/" | echo 'works'
-
-  push_to_aws_ecr:
-    title: Push to AWS ECS
-    type: push
-    description: Free text description
-    candidate: ${{build_step}}
-    tag: ${{CF_BRANCH}}
-    provider: 'ecr'
-    registry: ${{AWS_REGISTRY}}
-    accessKeyId: ${{AWS_ACCESS_KEY}}
-    secretAccessKey: ${{AWS_SECRET_KEY}}
-    region: ${{AWS_REGION}}
-    fail_fast: false
+      - cfecs-update --image-name demochat --image-tag ${{CF_BRANCH}} eu-west-1 demochat-cluster demochat-webapp
+    environment:
+      - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
+      - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
+    when:
+      branch:
+        only:
+          - master
