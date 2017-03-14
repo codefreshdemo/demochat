@@ -4,7 +4,7 @@ steps:
   build_step:
     type: build
     dockerfile: Dockerfile
-    image-name: codefreshdemo/lets-chat
+    image-name: codefreshdemo/demochat
     tag: ${{CF_BRANCH}}
 
   unit_tests:
@@ -31,3 +31,15 @@ steps:
       main:
         image: nhoag/curl
         command: bash -c "sleep 30 && curl http://app:5000/" | echo 'works'
+
+  push_to_aws_ecr:
+    title: Push to AWS ECS
+    type: push
+    description: Free text description
+    candidate: ${{build_step}}
+    tag: ${{CF_BRANCH}}
+    provider: 'ecr'
+    registry: ${{AWS_REGISTRY}}
+    accessKeyId: ${{AWS_ACCESS_KEY}}
+    secretAccessKey: ${{AWS_SECRET_KEY}}
+    region: ${{AWS_REGION}}
