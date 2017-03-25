@@ -8,7 +8,7 @@ steps:
     tag: ${{CF_BRANCH}}
 
   simple_travis_step:
-     type: simple_travis
+     type: travis
      services:
        - mongodb
        - ${{build_step}}
