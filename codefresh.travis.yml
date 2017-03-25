@@ -10,7 +10,7 @@ steps:
   simple_travis_step:
      type: simple_travis
      services:
-       - mongo
+       - mongodb
        - ${{build_step}}
      test:
        image: nhoag/curl
