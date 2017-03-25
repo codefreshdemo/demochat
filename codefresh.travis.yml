@@ -1,0 +1,56 @@
+version: '1.0'
+steps:
+
+  build_step:
+    type: build
+    dockerfile: Dockerfile
+    image-name: demochat
+    tag: ${{CF_BRANCH}}
+
+  simple_travis_step:
+     type: simple_travis
+     services:
+       - mongo
+       - ${{build_step}}
+     test:
+       image: nhoag/curl
+       command: bash -c "sleep 30 && curl http://app:5000/" | echo 'works'
+
+#  unit_tests:
+#    image: ${{build_step}}
+#    fail-fast: false
+#    commands:
+#      - sh -c './services/aws/setvars-stage.sh && ./services/aws/deploy.sh'
+#    commands:
+#      - npm install
+#      - gulp test
+#
+#  integration_step:
+#    type: composition
+#    composition:
+#      version: '2'
+#      services:
+#        app:
+#          image: ${{build_step}}
+#          links:
+#            - mongo
+#          ports:
+#            - 5000
+#        mongo:
+#          image: mongo
+#    composition-candidates:
+#      main:
+#        image: nhoag/curl
+#        command: bash -c "sleep 30 && curl http://app:5000/" | echo 'works'
+#
+#  deploy_to_ecs:
+#      image: codefresh/cf-deploy-ecs
+#      commands:
+#        - cfecs-update --image-name demochat --image-tag ${{CF_BRANCH}} eu-west-1 demochat-cluster demochat-webapp
+#      environment:
+#        - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
+#        - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
+#      when:
+#        branch:
+#          only:
+#            - master
