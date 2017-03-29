@@ -11,8 +11,6 @@ steps:
     image: ${{build_step}}
     fail-fast: false
     commands:
-      - sh -c './services/aws/setvars-stage.sh && ./services/aws/deploy.sh'
-    commands:
       - npm install
       - gulp test
 
