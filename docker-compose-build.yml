@@ -4,9 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    links:
-      - mongo
     ports:
       - 5000
+    command: bash -c 'sleep 10 && npm start'
   mongo:
     image: mongo
