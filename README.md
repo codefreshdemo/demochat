@@ -33,12 +33,10 @@ Enter the following link https://github.com/codefreshdemo/demochat and fork letâ
 <a name="docker"/>
 #Getting started with Docker
 
-##Add a service
+##Add a repository
 Now enter Codefresh and add your letâ€™s chat app as a codefresh service.
 
-press on ___Add New Service___
-
-![Screenshot](screenshots/codefresh_add_first_service.png)
+press on ___Add Repository___
 
 now add you forked demochat repo.
 toggle to ___Add by URL___
