@@ -1,0 +1,32 @@
+pipeline:
+  build:
+    image: node:latest
+    environment:
+      - DEBUG=*
+    commands:
+      - npm install
+      - npm install -g mocha
+      - npm install -g istanbul
+      - npm install -g gulp
+      - npm install -g debug
+
+  publish:
+    image: plugins/docker
+    repo: ncodefresh/demochat
+    username: ${DOCKERHUB_USERNAME}
+    password: ${DOCKERHUB_PASSWORD}
+    tags: [ "latest", "1" ]
+    when:
+      branch: master
+      event: push
+
+  slack:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/
+    channel: drone-migration
+    username: drone
+    template: >
+      *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ build.commit }}> ({{ build.ref }}) by {{ build.author }}
+    when:
+      event: [ push, pull_request ]
+      status: [ success, failure ]
