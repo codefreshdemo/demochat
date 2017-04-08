@@ -22,5 +22,3 @@ before_script:
 
 script:
     - gulp test
-    - npm start
-    - bash -c "sleep 30 && curl http://localhost:5000/" | echo 'works'
