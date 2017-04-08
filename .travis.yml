@@ -3,19 +3,24 @@ sudo: false
 language: node_js
 
 node_js:
-  - "0.10"
-  - "0.12"
-  - "4.0"
-  - "4.1"
-  - "4.2"
+    - "7"
 
-env:
-  - CXX="g++-4.8"
+before_install:
+    - export PORT=5000
 
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-    - gcc-4.8
+services:
+    - mongodb
+
+install:
+    - npm install
+
+before_script:
+    - npm install -g mocha
+    - npm install -g istanbul
+    - npm install -g gulp
+    - npm install -g debug
+    - npm start
+
+script:
+    - gulp test
+    - bash -c "curl http://localhost:5000/" | echo 'works'
