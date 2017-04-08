@@ -19,8 +19,8 @@ before_script:
     - npm install -g istanbul
     - npm install -g gulp
     - npm install -g debug
-    - npm start
 
 script:
     - gulp test
-    - bash -c "curl http://localhost:5000/" | echo 'works'
+    - npm start
+    - bash -c "sleep 30 && curl http://localhost:5000/" | echo 'works'
