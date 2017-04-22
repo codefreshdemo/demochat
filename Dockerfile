@@ -37,4 +37,4 @@ ENTRYPOINT ["/sbin/tini", "--"]
 #application server
 EXPOSE 5000
 
-CMD ["node", "app.js"]
+CMD npm run start

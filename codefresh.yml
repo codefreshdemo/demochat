@@ -28,7 +28,7 @@ steps:
       services:
         app:
           image: ${{build_step}}
-          command: node app.js
+          command: npm run start
           links:
             - mongo
           ports:
