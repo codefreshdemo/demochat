@@ -20,8 +20,8 @@ steps:
        mongo:
          image: mongo
      test:
-       image: nhoag/curl
-       command: bash -c "sleep 30 && curl http://app:5000/" | echo 'works'
+       image: alpine:3.5
+       command: sh -c "sleep 40 && wget -q http://app:5000/" | echo 'works'
 
 #  unit_tests:
 #    image: ${{build_step}}
@@ -47,8 +47,8 @@ steps:
           image: mongo
     composition-candidates:
       main:
-        image: nhoag/curl
-        command: bash -c "sleep 30 && curl http://app:5000/" | echo 'works'
+       image: alpine:3.5
+       command: sh -c "sleep 40 && wget -q http://app:5000/" | echo 'works
 #
 #  deploy_to_ecs:
 #      image: codefresh/cf-deploy-ecs
