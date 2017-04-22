@@ -29,7 +29,6 @@ COPY locales ./locales
 COPY media ./media
 COPY migrootions ./migrootions
 COPY templates ./templates
-COPY uploads ./uploads
 COPY *.js *.json *.yml ./
 
 # Set tini as entrypoint

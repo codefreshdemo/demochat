@@ -34,6 +34,7 @@ steps:
 #
   integration_step:
     type: composition
+    working_directory: /root/demochat
     composition:
       version: '2'
       services:
