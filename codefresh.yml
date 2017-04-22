@@ -28,7 +28,7 @@ steps:
       services:
         app:
           image: ${{build_step}}
-          command: sleep 10 && npm run start
+          command: sh -c "sleep 10 && npm run start"
           links:
             - mongo
           ports:
