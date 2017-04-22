@@ -30,4 +30,4 @@ ENTRYPOINT ["/sbin/tini", "--"]
 #application server
 EXPOSE 5000
 
-CMD ["node", "server/index.js"]
+CMD ["node", "app.js"]
