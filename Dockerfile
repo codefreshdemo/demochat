@@ -22,7 +22,15 @@ RUN apk add --no-cache --virtual .build-dep python make g++ krb5-dev && \
     rm -rf /tmp/*
 
 # copy app files
-COPY _sources app extras locales media migrootions templates uploads *.js *.json *.yml ./
+COPY _sources ./_sources
+COPY app ./app
+COPY extras ./extras
+COPY locales ./locales
+COPY media ./media
+COPY migrootions ./migrootions
+COPY templates ./templates
+COPY uploads ./uploads
+COPY *.js *.json *.yml ./
 
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
