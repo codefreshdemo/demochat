@@ -3,15 +3,12 @@ steps:
 
   build_dev_step:
     type: build
-    dockerfile: Dockerfile
-    image-name: demochat
-    build_arguments:
-      - NODE_ENV=dev
+    dockerfile: Dockerfile.dev
+    image-name: demochatnode
     tag: dev
 
   unit_tests:
     image: ${{build_dev_step}}
-    fail-fast: false
     working_directory: /root/demochat
     commands:
       - npm run test
@@ -24,12 +21,13 @@ steps:
 
   integration_step:
     type: composition
+    working_directory: /root/demochat
     composition:
       version: '2'
       services:
         app:
           image: ${{build_step}}
-          command: npm run start
+          command: sh -c "sleep 10 && npm run start"
           links:
             - mongo
           ports:
@@ -41,7 +39,7 @@ steps:
     composition-candidates:
       main:
         image: alpine:3.5 
-        command: sh -c "sleep 30 && wget -q http://app:5000/" | echo 'works'
+        command: sh -c "for i in $$(seq 1 20); do wget -s -q http://app:5000/ && break || sleep 5; done && wget -s -q http://app:5000/" | echo 'works'
 
   deploy_to_ecs:
       image: codefresh/cf-deploy-ecs

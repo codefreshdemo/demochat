@@ -9,8 +9,8 @@ WORKDIR /root/demochat
 # copy project file
 COPY package.json .
 
-# set NODE_ENV 
-ENV NODE_ENV production
+# set NODE_ENV to dev
+ENV NODE_ENV dev
 
 # install node packages
 RUN apk add --no-cache --virtual .build-dep python make g++ krb5-dev && \
@@ -27,7 +27,4 @@ COPY . .
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
 
-#application server
-EXPOSE 5000
-
-CMD npm run start
+CMD npm run migrate && npm run test

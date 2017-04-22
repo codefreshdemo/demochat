@@ -18,6 +18,7 @@ steps:
 #
   integration_step:
     type: composition
+    working_directory: /root/demochat
     composition:
       version: '3'
       services:
@@ -28,7 +29,7 @@ steps:
           ports:
             - 5000
           healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+            test: ["CMD", "wget", "-q", "http://localhost:5000/"]
             interval: 1m30s
             timeout: 10s
             retries: 3
@@ -36,8 +37,8 @@ steps:
           image: mongo
     composition-candidates:
       main:
-        image: nhoag/curl
-        command: bash -c "sleep 30 && curl http://app:5000/" | echo 'works'
+        image: alpine:3.5
+        command: sh -c "for i in 1 2 3 4 5; do wget -s -q http://app:5000/ && break || sleep 20; done && wget -s -q http://app:5000/" | echo 'works'
 #
 #  deploy_to_ecs:
 #      image: codefresh/cf-deploy-ecs
