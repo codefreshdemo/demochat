@@ -1,7 +1,7 @@
 FROM alpine:3.5
 
 # install node
-RUN apk add --no-cache nodejs=6.9.2-r1 tini
+RUN apk add --no-cache nodejs tini
 
 # set working directory
 WORKDIR /root/demochat
@@ -23,7 +23,7 @@ RUN apk add --no-cache --virtual .build-dep python make g++ krb5-dev && \
 
 # copy app files
 COPY . .
- 
+
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
 

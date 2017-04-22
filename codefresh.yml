@@ -7,18 +7,18 @@ steps:
     image-name: demochat
     tag: dev
 
+  build_step:
+    type: build
+    dockerfile: Dockerfile
+    image-name: demochat
+    tag: ${{CF_BRANCH}}
+
   unit_tests:
     image: ${{build_dev_step}}
     fail-fast: false
     working_directory: /root/demochat
     commands:
       - npm run test
-
-  build_step:
-    type: build
-    dockerfile: Dockerfile
-    image-name: demochat
-    tag: ${{CF_BRANCH}}
 
   integration_step:
     type: composition
