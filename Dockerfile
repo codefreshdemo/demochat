@@ -1,7 +1,7 @@
-FROM alpine:3.5
+FROM alpine:edge
 
 # install node
-RUN apk add --no-cache nodejs tini
+RUN apk add --no-cache nodejs-npm tini
 
 # set working directory
 WORKDIR /root/demochat

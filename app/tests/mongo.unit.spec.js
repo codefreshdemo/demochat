@@ -17,7 +17,7 @@ var db_docker = 'mongodb://mongo:27017/hp_mongo';
 
 describe('sanity tests', function(done){
 
-it('test mongo connection' , function(done){
+it.skip('test mongo connection' , function(done){
 
     mongoose.connect(dbRemote, function(err) {
 
