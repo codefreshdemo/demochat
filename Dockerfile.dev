@@ -27,4 +27,4 @@ COPY . .
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
 
-CMD npm run migrate && npm run test
+CMD npm run test
