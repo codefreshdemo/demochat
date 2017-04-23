@@ -1,7 +1,7 @@
-FROM alpine:3.5
+FROM alpine:edge
 
 # install node
-RUN apk add --no-cache nodejs tini
+RUN apk add --no-cache nodejs-npm tini
 
 # set working directory
 WORKDIR /root/demochat
@@ -13,13 +13,13 @@ COPY package.json .
 ENV NODE_ENV production
 
 # install node packages
-RUN apk add --no-cache --virtual .build-dep python make g++ krb5-dev && \
-    npm set progress=false && \
-    npm config set depth 0 && \
-    npm install && \
-    npm cache clean && \
-    apk del .build-dep && \
-    rm -rf /tmp/*
+# RUN apk add --no-cache --virtual .build-dep python make g++ krb5-dev && \
+#     npm set progress=false && \
+#     npm config set depth 0 && \
+#     npm install && \
+#     npm cache clean && \
+#     apk del .build-dep && \
+#     rm -rf /tmp/*
 
 # copy app files
 COPY . .
