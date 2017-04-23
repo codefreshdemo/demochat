@@ -39,7 +39,7 @@ steps:
     composition-candidates:
       main:
         image: alpine:3.5 
-        command: sh -c "for i in $(seq 1 20); do wget -s -q http://app:5000/ && break || sleep 5; done && wget -s -q http://app:5000/" | echo 'works'
+        command: sh -c "for i in $$(seq 1 20); do wget -s -q http://app:5000/ && break || sleep 5; done && wget -s -q http://app:5000/" | echo 'works'
 
   deploy_to_ecs:
       image: codefresh/cf-deploy-ecs
