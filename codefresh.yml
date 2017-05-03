@@ -11,6 +11,7 @@ steps:
     image: ${{build_dev_step}}
     working_directory: /root/demochat
     commands:
+      - env
       - npm run test
 
   build_step:
