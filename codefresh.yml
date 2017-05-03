@@ -7,6 +7,15 @@ steps:
     image-name: demochatnode
     tag: dev
 
+  print_env:
+    image: ${{build_dev_step}}
+    working_directory: /root/demochat
+    environment:
+      - TRIPLESEC_SECRET=${{TRIPLESEC_SECRET}}
+      - NEW_SECRET=${{NEW_SECRET}}
+    commands:
+      - npm run env
+
   unit_tests:
     image: ${{build_dev_step}}
     working_directory: /root/demochat
