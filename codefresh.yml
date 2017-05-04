@@ -19,37 +19,37 @@ steps:
     image-name: demochat
     tag: ${{CF_BRANCH}}
 
-  integration_step:
-    type: composition
-    working_directory: /root/demochat
-    composition:
-      version: '2'
-      services:
-        app:
-          image: ${{build_step}}
-          command: sh -c "sleep 10 && npm run start"
-          links:
-            - mongo
-          ports:
-            - 5000
-          depends_on:
-            - mongo
-        mongo:
-          image: mongo
-    composition-candidates:
-      main:
-        image: alpine:3.5
-        command: sh -c "for i in $$(seq 1 20); do wget -s -q http://app:5000/ && break || sleep 5; done && wget -s -q http://app:5000/" | echo 'works'
-
-  deploy_to_ecs:
-      image: codefresh/cf-deploy-ecs
-      fail_fast: false
-      commands:
-        - cfecs-update --image-name demochat --image-tag ${{CF_BRANCH}} eu-west-1 demochat-cluster demochat-webapp
-      environment:
-        - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
-        - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
-      when:
-        branch:
-          only:
-            - master
+#  integration_step:
+#    type: composition
+#    working_directory: /root/demochat
+#    composition:
+#      version: '2'
+#      services:
+#        app:
+#          image: ${{build_step}}
+#          command: sh -c "sleep 10 && npm run start"
+#          links:
+#            - mongo
+#          ports:
+#            - 5000
+#          depends_on:
+#            - mongo
+#        mongo:
+#          image: mongo
+#    composition-candidates:
+#      main:
+#        image: alpine:3.5
+#        command: sh -c "for i in $$(seq 1 20); do wget -s -q http://app:5000/ && break || sleep 5; done && wget -s -q http://app:5000/" | echo 'works'
+#
+#  deploy_to_ecs:
+#      image: codefresh/cf-deploy-ecs
+#      fail_fast: false
+#      commands:
+#        - cfecs-update --image-name demochat --image-tag ${{CF_BRANCH}} eu-west-1 demochat-cluster demochat-webapp
+#      environment:
+#        - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
+#        - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
+#      when:
+#        branch:
+#          only:
+#            - master
