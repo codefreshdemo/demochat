@@ -2,10 +2,10 @@
 #
 # ---- Base Node ----
 #
-FROM alpine:edge AS base
+FROM alpine:3.5 AS base
 
 # install node
-RUN apk add --no-cache nodejs-npm tini
+RUN apk add --no-cache nodejs-current tini
 # set working directory
 WORKDIR /root/demochat
 # Set tini as entrypoint
