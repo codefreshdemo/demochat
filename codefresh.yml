@@ -6,27 +6,3 @@ steps:
     dockerfile: Dockerfile.multistage
     image-name: demochat
     tag: ${{CF_BRANCH}}
-
-
-  integration_step:
-    type: composition
-    working_directory: /root/demochat
-    composition:
-      version: '2'
-      services:
-        app:
-          image: ${{build_step}}
-          command: sh -c "sleep 10 && npm run start"
-          links:
-            - mongo
-          ports:
-            - 5000
-          depends_on:
-            - mongo
-        mongo:
-          image: mongo
-    composition-candidates:
-      main:
-        image: alpine:3.5 
-        command: sh -c "for i in 1 2 3 4 5; do wget -s -q http://app:5000/ && break || sleep 20; done && wget -s -q http://app:5000/" | echo 'works'
-
