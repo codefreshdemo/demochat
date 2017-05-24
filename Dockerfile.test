@@ -30,4 +30,4 @@ COPY . .
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
 
-CMD yarn lint && yarn test
+CMD yarn lint && yarn scan && yarn test

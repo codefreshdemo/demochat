@@ -37,7 +37,11 @@ RUN yarn install --ignore-engines
 #
 FROM dependencies AS test
 COPY . .
+# run eslinter
 RUN yarn lint
+# scan code for security violations
+RUN yarn scan
+# run mocha tests
 RUN yarn test
 
 #

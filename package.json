@@ -10,7 +10,8 @@
     "prestart": "migroose",
     "migrate": "migroose",
     "test": "gulp test",
-    "lint": "gulp eslint"
+    "lint": "gulp eslint",
+    "scan": "nsp check --output summary || echo 'ATTENTION: found security violations!!!'" 
   },
   "engine": {
     "node": "0.10.x",
@@ -110,6 +111,7 @@
     "istanbul": "^0.4.2",
     "mocha": "^2.3.4",
     "newman": "^3.6.0",
+    "nsp": "^2.6.3",
     "shortid": "^2.2.4"
   }
 }
