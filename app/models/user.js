@@ -1,8 +1,5 @@
-//
-// User
-//
-
 'use strict';
+
 var debug = require('debug')('model->user');
 var bcrypt = require('bcryptjs'),
     crypto = require('crypto'),
@@ -26,7 +23,7 @@ var UserSchema = new mongoose.Schema({
         required: false,
         trim: true,
         validate: [function(v) {
-            debug('validation of uid: ' + v.length +"," + v);
+            debug('validation of uid: ' + v.length +',' + v);
             return (v.length <= 40);
         }, 'invalid ldap/kerberos username']
     },
