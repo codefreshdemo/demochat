@@ -1,23 +1,26 @@
 FROM alpine:3.5
 
 # install node
-RUN apk add --no-cache nodejs tini
+RUN apk add --no-cache nodejs-current tini
 
 # set working directory
 WORKDIR /root/demochat
 
+# install yarn
+RUN npm config set depth 0 && npm install --global yarn && npm cache clean
+
 # copy project file
 COPY package.json .
+COPY yarn.lock .
 
 # set NODE_ENV to dev
 ENV NODE_ENV dev
 
 # install node packages
 RUN apk add --no-cache --virtual .build-dep python make g++ krb5-dev && \
-    npm set progress=false && \
-    npm config set depth 0 && \
-    npm install && \
-    npm cache clean && \
+    yarn config set depth 0 && \
+    yarn install --ignore-engines && \
+    yarn cache clean && \
     apk del .build-dep && \
     rm -rf /tmp/*
 
@@ -27,4 +30,4 @@ COPY . .
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
 
-CMD npm run lint && npm run test
+CMD yarn lint && yarn test
