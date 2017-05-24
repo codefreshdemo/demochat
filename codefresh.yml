@@ -3,6 +3,6 @@ steps:
 
   build_step:
     type: build
-    dockerfile: Dockerfile.multistage
+    dockerfile: Dockerfile
     image-name: demochat
     tag: ${{CF_BRANCH}}
