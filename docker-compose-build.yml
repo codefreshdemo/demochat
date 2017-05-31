@@ -6,6 +6,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5000
-    command: bash -c 'sleep 10 && npm start'
+    command: sh -c 'sleep 10 && npm start'
   mongo:
     image: mongo
