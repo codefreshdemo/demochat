@@ -1,0 +1,9 @@
+version: '1.0'
+steps:
+
+  build_step:
+    type: build
+    dockerfile: Dockerfile
+    image-name: demochat
+    no_cache: true
+    tag: ${{CF_BRANCH}}
