@@ -125,7 +125,7 @@
     "stripe": "4.18.0",
     "through2": "^0.6.5",
     "triplesec": "3.0.25",
-    "validator": "^5.1.0"
+    "validator": "^5.1.0",
     "chai": "^3.0.0",
     "chai-as-promised": "^6.0.0",
     "chai-string": "^1.1.6",
