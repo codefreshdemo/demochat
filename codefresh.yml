@@ -9,6 +9,7 @@ steps:
   RunningTests:
     title: Running tests
     image: ${{build_dev_step}}
+    working_directory: /root/
     commands:
       - ls -l
       - npm start validate
