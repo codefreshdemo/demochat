@@ -7,16 +7,7 @@ steps:
     image-name: ${{dockerhubUsername}}/demochat-alpine
     tag: dev
 
-  print_env:
-    image: ${{build_dev_step}}
-    working_directory: /root/demochat
-    environment:
-      - TRIPLESEC_SECRET=${{TRIPLESEC_SECRET}}
-      - NEW_SECRET=${{NEW_SECRET}}
-    commands:
-      - npm run env
-
-  unit_tests:
+  unit_tests_export:
     image: ${{build_dev_step}}
     working_directory: /root/demochat
     commands:
@@ -24,7 +15,7 @@ steps:
       - cf_export TAG='qwerty=we'
       - cat file.env >> /codefresh/volume/env_vars_to_export
 
-  unit_tests:
+  unit_tests_print:
     image: ${{build_dev_step}}
     working_directory: /root/demochat
     commands:
