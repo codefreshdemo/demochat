@@ -4,7 +4,7 @@ steps:
   build_dev_step:
     type: build
     dockerfile: Dockerfile.dev
-    image-name: demochatnode
+    image-name: ${{dockerhubUsername}}/demochat-alpine
     tag: dev
 
   print_env:
@@ -21,44 +21,21 @@ steps:
     working_directory: /root/demochat
     commands:
       - npm run test
+      - cf_export TAG='qwerty=we'
+      - cat file.env >> /codefresh/volume/env_vars_to_export
 
-  build_step:
-    type: build
-    dockerfile: Dockerfile
-    image-name: demochat
-    tag: ${{CF_BRANCH}}
-
-  integration_step:
-    type: composition
+  unit_tests:
+    image: ${{build_dev_step}}
     working_directory: /root/demochat
-    composition:
-      version: '2'
-      services:
-        app:
-          image: ${{build_step}}
-          command: sh -c "sleep 10 && npm run start"
-          links:
-            - mongo
-          ports:
-            - 5000
-          depends_on:
-            - mongo
-        mongo:
-          image: mongo
-    composition-candidates:
-      main:
-        image: alpine:3.5
-        command: sh -c "for i in $$(seq 1 20); do wget -s -q http://app:5000/ && break || sleep 5; done && wget -s -q http://app:5000/" | echo 'works'
+    commands:
+      - echo $TAG
+      - echo $TAG1
+      - echo $TAG2
 
-  deploy_to_ecs:
-      image: codefresh/cf-deploy-ecs
-      fail_fast: false
-      commands:
-        - cfecs-update --image-name demochat --image-tag ${{CF_BRANCH}} eu-west-1 demochat-cluster demochat-webapp
-      environment:
-        - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
-        - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
-      when:
-        branch:
-          only:
-            - master
+  push-to-dockerhub:
+    type: push
+    candidate: ${{build_project}}
+    credentials:
+      username: ${{dockerhubUsername}}
+      password: ${{dockerhubPassword}}
+    tags: [ ${{TAG}}, ${{TAG1}}, latest ]
