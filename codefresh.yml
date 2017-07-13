@@ -1,23 +1,21 @@
 version: '1.0'
 steps:
 
-  build_dev_step:
-    type: build
-    dockerfile: Dockerfile.dev
-    image-name: ${{dockerhubUsername}}/demochat-alpine
-    tag: dev
+#  build_dev_step:
+#    type: build
+#    dockerfile: Dockerfile.dev
+#    image-name: ${{dockerhubUsername}}/demochat-alpine
+#    tag: dev
 
   unit_tests_export:
-    image: ${{build_dev_step}}
-    working_directory: /root/demochat
+    image: alpine:3.5
     commands:
       - npm run test
       - cf_export TAG='qwerty=we'
       - cat file.env >> /codefresh/volume/env_vars_to_export
 
   unit_tests_print:
-    image: ${{build_dev_step}}
-    working_directory: /root/demochat
+    image: alpine:3.5
     commands:
       - echo $TAG
       - echo $TAG1
