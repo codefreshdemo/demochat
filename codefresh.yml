@@ -23,10 +23,10 @@ steps:
       - echo $TAG1
       - echo $TAG2
 
-  push-to-dockerhub:
-    type: push
-    candidate: ${{build_project}}
-    credentials:
-      username: ${{dockerhubUsername}}
-      password: ${{dockerhubPassword}}
-    tags: [ ${{TAG}}, ${{TAG1}}, latest ]
+#  push-to-dockerhub:
+#    type: push
+#    candidate: ${{build_project}}
+#    credentials:
+#      username: ${{dockerhubUsername}}
+#      password: ${{dockerhubPassword}}
+#    tags: [ ${{TAG}}, ${{TAG1}}, latest ]
