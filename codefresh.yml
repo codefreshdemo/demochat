@@ -10,7 +10,6 @@ steps:
   unit_tests_export:
     image: alpine:3.5
     commands:
-      - npm run test
       - cf_export TAG='qwerty=we'
       - cat file.env >> /codefresh/volume/env_vars_to_export
 
