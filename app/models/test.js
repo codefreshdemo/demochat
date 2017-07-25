@@ -1,3 +1,5 @@
+'use strict';
+
 var debug = require('debug')('model->test');
 var bcrypt = require('bcryptjs'),
     crypto = require('crypto'),

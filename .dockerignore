@@ -1,14 +1,9 @@
 .git
 .gitignore
 node_modules
+coverage
 screenshots
-
-.drone.yml
 .editorconfig
-.eslintignore
-.eslintrc
-.travis.yaml
 *.md
-codefresh.yml
-Procfile
-Vargantfile
+codefresh*.yml
+
