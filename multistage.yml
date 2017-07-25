@@ -6,3 +6,4 @@ steps:
     dockerfile: Dockerfile
     image-name: demochat-multistage
     tag: dev
+    squash: true
