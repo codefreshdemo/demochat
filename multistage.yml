@@ -3,6 +3,6 @@ steps:
 
   build_dev_step:
     type: build
-    dockerfile: Dockerfile.multistage
+    dockerfile: Dockerfile
     image-name: demochat-multistage
     tag: dev
