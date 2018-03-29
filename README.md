@@ -22,7 +22,7 @@ and check if your application is responsive. It will do so by printing "works" i
 So the first thing you need to do is :
 
 ##Fork our repo
-
+![Doron & Oleg]
 Enter the following link https://github.com/codefreshdemo/demochat and fork let’s chat app
 ![Screenshot](screenshots/Screen Shot 2016-09-27 at 8.01.32 PM.png)
 
