@@ -1,8 +1,6 @@
 # Dockerized NodeJS application
 
 ![Let's Chat Greylock](http://i.imgur.com/0a3l5VF.png)
-Demo!
-
 
 ![Screenshot](http://i.imgur.com/C4uMD67.png)
 
