@@ -16,7 +16,7 @@ steps:
   build_dev_image:
     title: "Building Dev image"
     type: "build"
-    image_name: "demochat"
+    image_name: "codefreshdemo/demochat"
     working_directory: "${{clone}}"
     tag: "dev"
     dockerfile: "Dockerfile.dev"
@@ -34,7 +34,7 @@ steps:
   build_image:
     title: "Building App image"
     type: "build"
-    image_name: "demochat"
+    image_name: "codefreshdemo/demochat"
     working_directory: "${{clone}}"
     tag: "dev"
     dockerfile: "Dockerfile"
